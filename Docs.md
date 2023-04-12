@@ -4,14 +4,14 @@
 To declare variables :
 
     // For primitive variables :
-    Number variableNumber(4);
-    Number variableFloat(4.9);
-    Text textVar("abcdef");
-    Bool booleanVar(false);
+    	Number variableNumber(4);
+    	Number variableFloat(4.9);
+    	Text textVar("abcdef");
+    	Bool booleanVar(false);
 
     // For object of class variables :
-    ClassName varName( functiontogetthisvariable() )
-    Character npc(GetCharacter())
+    	ClassName varName( functiontogetthisvariable() )
+    	Character npc(GetCharacter())
 
 
 To get this variables in the code just enter her names :
