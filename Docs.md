@@ -1,29 +1,33 @@
-/ For get players characters :
-
-    Global Character cPlayer1;
-    Global Character cPlayer2;
+# The basics :
 
 
-// To declare variables :
+To declare variables :
 
+    // For primitive variables :
     Number variableNumber(4);
     Number variableFloat(4.9);
-    Text textVar("AAAA");
+    Text textVar("abcdef");
     Bool booleanVar(false);
 
-// To get this variables in the code just enter her names :
+    // For object of class variables :
+    ClassName varName( functiontogetthisvariable() )
+    Character npc(GetCharacter())
+
+
+To get this variables in the code just enter her names :
 
     variableNumber > variableFloat
 
-// So to get global variable there are this syntaxe :
+To set the value of a variable do this :
 
-    Global VariableType myVariableName;
-
-
-// there are ";" in the end of a line like JS
+    variable = 5
+    variable = true
 
 
-// we can make if else code :
+there are ";" in the end of a line like JS
+
+
+We can make if else instructions like this :
 
     if( true == true && false == true ) {
         // code
@@ -31,33 +35,29 @@
         // code
     }
 
-// if we do if(nobooleanvariable) that work like JS
+if we do if(nobooleanvariable) that work like JS, for examples :
+
+    if( null ) { // null == false
+        // code
+    }
+    if( object ) { // if object is null => false else => true
+        // code
+    }
 
 
-// To wait seconds in the code there are the function Wait :
+To wait seconds in the code there are the function Wait :
 
     Wait(200);
 
 
-// In a character code, the var that make reference to the npc is "me" and to get it we need to make this :
+So to get global variable there are this syntaxe :
 
-    Character me(GetCharacter());
-
-
-// In the character code i have found this, i think this is to attack the player :
-
-    me.Attack(cPlayer1);
+    Global VariableType myVariableName;
 
 
-// We can make timer by this :
 
-    Timer LineTimer(50);
 
-    if( LineTimer < 2 ) {
-        LineTimer.Reset(); // Reset the timer
-    }
-
-// To making class :
+To making class : (note : the classes is like the function)
 
     State MyClassName()
     {
@@ -82,20 +82,50 @@
 	    };
     };
 
-// Make npc arestable :
+
+# Interact with the game
+
+
+For get players characters :
+
+    Global Character cPlayer1;
+    Global Character cPlayer2;
+
+
+
+
+In a character code, the var that make reference to the npc is "me" and to get it we need to make this :
+
+    Character me(GetCharacter());
+
+
+In the character code i have found this, i think this is to attack the player :
+
+    me.Attack(cPlayer1);
+
+
+We can make timer by this :
+
+    Timer LineTimer(50);
+
+    if( LineTimer < 2 ) {
+        LineTimer.Reset(); // Reset the timer
+    }
+
+Make npc arestable :
     
     npc.SetArrestable(true);
 
-// Start fight / battle with NPC :
+Start fight / battle with NPC :
 
-    Character npc(GetCharacter()); / Character npc( CreateAICharacter( "Robber", "Criminal", lSpawnChar, 2) );
+    Character npc(GetCharacter()); // Character npc( CreateAICharacter( "Robber", "Criminal", locationSpawnChar, 2) );
 
-    Global AttackManager amEncounter1;
+    Global AttackManager amEncounter;
 
     npc.SetPushable(false);
     npc.SetInvulnerable(false);
 
-    amEncounter1.AddAttacker(npc);
+    amEncounter.AddAttacker(npc);
 
 
     // In general, there are the main first class in a code
@@ -115,13 +145,13 @@
 
     Base();
 
-// To move npc :
+To move npc :
 
     Locator lGoto ("ExitLift");
     npc.MoveTo(lGoto, 1, #STRAIGHTLINE);
 
 
-// To get the nearest player
+To get the nearest player
 
     Global Character cPlayer1;
     Global Character cPlayer2;
@@ -142,11 +172,11 @@
         };
     };
 
-// To get if character is in a vehicle :
+To get if character is in a vehicle :
 
     character.InVehicle( vehicle )
 
-// Spawn vehicle :
+Spawn vehicle :
 
     Text vehicleType("Police_Rino"); // Put the vehicle name
     Locator vehicleSpawnLocation("");
@@ -163,7 +193,7 @@
 
     myCar = CreateCharacter( vehicleType, vehicleSpawnLocation, "default", vehicleDirection);
 
-// Spawn NPC :
+Spawn NPC :
 
     Locator lFrankSpawn("");
 
@@ -174,7 +204,7 @@
     nDirection = lFrankSpawn.GetDirection();
     cFrankHoney = CreateCharacter("FrankHoney", lFrankSpawn, "SM01_FrankArrive", nDirection);
 
-// Make NPC moving to location :
+Make NPC moving to location :
 
     Global Locator gLocMoveTo("");
     Locator lMoveTo("Mission01_Frank_EnterVehicle");
@@ -183,7 +213,7 @@
     gLocMoveTo = lMoveTo;
     npc.SetScript( tMoveTo );
 
-// Spawn AI in vehicle : (there are CreateAICharacter but there are too CreateAIVehicle)
+Spawn AI in vehicle : (there are CreateAICharacter but there are too CreateAIVehicle)
 
     Text tFighterType("Collectable");
 
@@ -192,16 +222,16 @@
 
     RegisterEvent("ArrivedAtTarget", "StartFight", fighter);
 
-// Make npc down :
+Make npc down :
 
     npc.LockInPlace(true,"idle");
     npc.CutDownCharacter(true);
 
-// Get a random number :
+Get a random number :
     RandomInt(1,3);
 
 
-// Make a function :
+Make a function :
 
     Function myFunctionName () returns Bool // !! <-- "Bool" is the type returned, so if you want to return a number put "Number"
     {    
@@ -215,41 +245,41 @@
 	    }
     }
 
-// playing a sound :
+playing a sound :
 
     PlaySFX(sfx="UI_CodeBreak_CheatUnlocked");
 
-// Show / print a text :
+Show / print a text :
 
     UI_SetMissionMessage("PONG_NOT_READY", 4);
     PrintToScreen("Press A to tell Robber to Flee");
 
 
-// Teleport a player / character :
+Teleport a player / character :
 
     cPlayer1.Teleport(position (its a Locator), rotation (its a Number) );
 
-// Change the sky :
+Change the sky :
     SetTimeOfDay(200);
 
-// Get a key pressed :
+Get a key pressed :
 
     PlayerPressedButton("L3"); // return true / false
     PlayerPressedButton("A")
 
-// Modify speed :
+Modify speed :
 
     v1 = cPlayer1.GetVehicle();
     if ( v1.GetSpeed() >  nDrivingVelocity )
 
-// Activate the slow-motion :
+Activate the slow-motion :
 
     SlowMo( 4, 0.25 );
 
-// Detect when npc is on the screen / window :
+Detect when npc is on the screen / window :
 
     npc.OnScreen()
 
-// Make character opacity down to 0 :
+Make character opacity down to 0 :
 
     npc.FadeOut(2.3); // it will disable the opacity in 2.3 seconds
