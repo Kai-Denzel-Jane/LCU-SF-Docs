@@ -130,8 +130,8 @@ Start fight / battle with NPC :
     amEncounter.AddAttacker(npc);
 
 
-    // In general, there are the main first class in a code
-    // named "Base" and at the end of the code we call it like this :
+In general, there are the main first class in a code
+Named "Base" and at the end of the code we call it like this :
 
     State Base() {
     
