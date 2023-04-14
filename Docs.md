@@ -12,9 +12,11 @@ To declare variables :
 
 
     // For object of class variables :
-    
+
     ClassName varName( functiontogetthisvariable() );
     Character npc(GetCharacter());
+    Character characterNull; // < this variable is null
+
 
 
 To get this variables in the code just enter her names :
@@ -68,18 +70,18 @@ So to get global variable there are this syntaxe :
 
 
 
-To making class : (note : the classes is like the function but with a part named "Conditions" and a part named "Actions" and IDK what it's for)
+To making class :
 
     State MyClassName()
     {
-	    Conditions
+	    Conditions // !!   This is executed every frames
 	    {
 		    if ( player.loveCheese() ) {
                 // To execute a class in another use "goto ClassName();"
 			    goto EatCheese();
 		    };
 	    };
-	    Actions
+	    Actions // !!   This is executed one frame
 	    {
 	    };
     };
@@ -111,6 +113,16 @@ Make a function :
 
 Get a random number :
     RandomInt(1,3);
+    RandomFloat(0, 2);
+
+We can make timer by this :
+
+    Timer LineTimer(50);
+
+    if( LineTimer < 2 ) {
+        LineTimer.Reset(); // Reset the timer
+    }
+
 
 # Interact with the game
 
@@ -129,23 +141,39 @@ To get position and direction of a player :
     nPlayerRot = cPlayer1.GetDirection();
 
 
+Declarate a position :
+    Position myPosition(-180, 5, -221);
+
 In a character code to get the reference to the npc we use the function "GetCharacter()" like this :
 
     Character me(GetCharacter());
 
 
-In the character code i have found this, i think this is to attack the player :
 
-    me.Attack(cPlayer1);
+Register an event :
 
+    Function myFunctionName(Character cSplat)
+    {
+        PrintToScreen("aa");
+    };
 
-We can make timer by this :
+	RegisterEvent("eventName", "myFunctionName", cPlayer1 );
 
-    Timer LineTimer(50);
+    // List of some events :
 
-    if( LineTimer < 2 ) {
-        LineTimer.Reset(); // Reset the timer
-    }
+	RegisterEvent("ArrivedToBouncePadTarget", "myFunctionName", cPlayer1 );
+    RegisterEvent("PlayerJackedVehicle", "fnGotInCar");
+    RegisterEvent("PlayerExitedVehicle", "fnGotOutOfCar");
+    RegisterEvent("PlayerVehicleHitProp", "fnCarHitProp");
+    RegisterEvent("PlayerVehicleHitTraffic", "fnCarHitTraffic");
+    RegisterEvent("PlayerVehicleAndAIVehicleCollision", "fnCarHitAIVehicle");
+    RegisterEvent("PlayerVehicleHitKrawlie", "fnCarHitKrawlie");
+    RegisterEvent("PlayerVehicleOnRoof", "function");
+    RegisterEvent("PlayerVehicleWaterRespawn", "function");
+    RegisterEvent("PlayerVehicleDestroyed", "function");
+    RegisterEvent("PlayerVehicleNearlyWrecked", "function");
+    RegisterEvent("PlayerVehicleJumping", "function");
+
 
 Make npc arestable :
     
@@ -155,12 +183,22 @@ Start fight / battle with NPC :
 
     Character npc(GetCharacter()); // Character npc( CreateAICharacter( "Robber", "Criminal", locationSpawnChar, 2) );
 
-    Global AttackManager amEncounter;
+    Global AttackManager amEncounter1("");
 
     npc.SetPushable(false);
     npc.SetInvulnerable(false);
 
-    amEncounter.AddAttacker(npc);
+    amEncounter1.AddAttacker(npc);
+    
+    npc.Attack(cPlayer1);
+
+
+Get driver in a vehicle :
+    vehicle.GetDriver();
+
+
+Make npc flee an Character :
+    npc.Flee( cPlayer1, speedNumber, #USEPARKOUR );
 
 
 In general, there are the main first class in a code
@@ -170,11 +208,11 @@ Named "Base" and at the end of the code we call it like this :
     
 	    Conditions
 	    {
-            
+            // Your code here
 	    };
 	    Actions
 	    {
-
+            // Your code here
 	    };
     }
 
@@ -182,8 +220,10 @@ Named "Base" and at the end of the code we call it like this :
 
 To move npc :
 
-    Locator lGoto ("ExitLift");
-    npc.MoveTo(lGoto, 1, #STRAIGHTLINE);
+    Locator myLocator;
+    npc.MoveTo(myLocator, 1, #STRAIGHTLINE);
+    
+    npc.MoveTo(cPlayer1, 1);
 
 
 To get the nearest player
@@ -209,7 +249,10 @@ To get the nearest player
 
 To get if character is in a vehicle :
 
-    character.InVehicle( vehicle )
+    character.InVehicle( vehicle );
+
+Eject character from vehicle :
+    vehicle.ExitVehicle();
 
 Spawn vehicle :
     
@@ -263,13 +306,15 @@ playing a sound :
 
 Show / print a text :
 
-    UI_SetMissionMessage("PONG_NOT_READY", 4);
-    PrintToScreen("Press A to tell Robber to Flee");
+    PrintToScreen("Hello World");
 
 
 Teleport a player / character :
 
     cPlayer1.Teleport(position (its a Locator), rotation (its a Number) );
+
+Disable collisions of a character :
+	npc.SetNoCollision(true);
 
 Change the sky :
     SetTimeOfDay(200);
@@ -283,6 +328,9 @@ Get vehicle speed :
 
     v1 = cPlayer1.GetVehicle();
     if ( v1.GetSpeed() >  nDrivingVelocity )
+
+Set vehicle traffic density :
+	OverrideTrafficDensity(0); // Stop the traffic
 
 Activate the slow-motion :
 
