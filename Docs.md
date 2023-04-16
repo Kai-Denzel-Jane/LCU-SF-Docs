@@ -1,4 +1,4 @@
-# The basics :
+# The basics
 
 
 To declare variables :
