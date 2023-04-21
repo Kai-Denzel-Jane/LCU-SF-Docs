@@ -1,4 +1,33 @@
+# Inject my code in the game :
+
+1. Add this line (in lowercase) into the file at LEVELS/LEGO_CITY/LEGO_CITY/AI/SCRIPT.TXT :
+
+        level31
+
+2. In the same folder, add a file named LEVEL31.SF (in uppercase)
+
+3. Open the LEVEL31.SF file created with a code editor and start coding
+
+
 # The basics :
+
+Start your code :
+In general, there are the main first class in a code
+Named "Base" and at the end of the code we call it like this :
+
+    State Base() {
+    
+	    Conditions
+	    {
+            // Your code here (executed every frames)
+	    };
+	    Actions
+	    {
+            // Your code here (execute one frame)
+	    };
+    }
+
+    Base();
 
 
 To declare variables :
@@ -46,6 +75,8 @@ We can make if else instructions like this :
 
     if( true == true && false == true ) {
         // code
+    } elseif( false ) {
+        // code
     } else {
         // code
     }
@@ -79,7 +110,7 @@ To making class :
 	    Conditions // !!   This is executed every frames
 	    {
 		    if ( player.loveCheese() ) {
-                            // To execute a class in another use "goto ClassName();"
+                // To execute a class in another use "goto ClassName();"
 			    goto EatCheese();
 		    };
 	    };
@@ -96,8 +127,6 @@ To making class :
 		    player.EatCheese(8);
 	    };
     };
-    
-    MyClassName();
 
 
 Make a function :
@@ -106,11 +135,11 @@ Make a function :
     {
 	    if ( true )
 	    {
-	    	return true;
+	    	    return true;
 	    }
 	    else
 	    {
-		return false;
+		    return false;
 	    }
     }
 
@@ -158,22 +187,15 @@ Make an array and using it :
     exampleArray.Size(); // Returns size
 
 
-# Interact with the game
+# Interact with the game :
 
+
+### Most common functions/variables used
 
 For get players characters :
 
     Global Character cPlayer1;
     Global Character cPlayer2;
-
-
-To get position and direction of a player :
-
-    Position pPlayerPos;
-    Number nPlayerRot;
-
-    pPlayerPos = cPlayer1.GetPosition();
-    nPlayerRot = cPlayer1.GetDirection();
 
 
 Verify if city is loaded :
@@ -185,54 +207,30 @@ Verify if city is loaded :
 
 Verify if this is safe to interrupt gameplay :
 
-    if( wlCity.SafeToInterruptGameplay() ) {};
+    if( SafeToInterruptGameplay() ) {};
 
 
-Declarate a position :
-    
-    Position myPosition(-180, 5, -221);
+### Character objects
 
-In a character code to get the reference to the npc we use the function "GetCharacter()" like this :
+First, you need to know that players and npc are an object of the class "Character".
 
-    Character me(GetCharacter());
+To get position and direction of a character :
 
+    Position pPlayerPos;
+    Number nPlayerRot;
 
-
-Register an event :
-
-    Function myFunctionName(Character cSplat)
-    {
-        // code
-    };
-
-    RegisterEvent("eventName", "myFunctionName", cPlayer1 );
-
-    // List of some events :
-
-    RegisterEvent("ArrivedToBouncePadTarget", "myFunctionName", cPlayer1 );
-    RegisterEvent("PlayerJackedVehicle", "function");
-    RegisterEvent("PlayerExitedVehicle", "function");
-    RegisterEvent("PlayerVehicleHitProp", "function");
-    RegisterEvent("PlayerVehicleHitTraffic", "function");
-    RegisterEvent("PlayerVehicleAndAIVehicleCollision", "function");
-    RegisterEvent("PlayerVehicleHitKrawlie", "function");
-    RegisterEvent("PlayerVehicleOnRoof", "function");
-    RegisterEvent("PlayerVehicleWaterRespawn", "function");
-    RegisterEvent("PlayerVehicleDestroyed", "function");
-    RegisterEvent("PlayerVehicleNearlyWrecked", "function");
-    RegisterEvent("PlayerVehicleJumping", "function");
-    RegisterEvent("VehicleTakenDamage", "MyFunction", vehicle);
-
-    
+    pPlayerPos = cPlayer1.GetPosition();
+    nPlayerRot = cPlayer1.GetDirection();
 
 
 Make npc arestable :
     
     npc.SetArrestable(true);
 
+
 Start fight / battle with NPC :
 
-    Character npc(GetCharacter()); // Character npc( CreateAICharacter( "Robber", "Criminal", position, 2) );
+    Character npc( CreateAICharacter( "Robber", "Criminal", position, 0) );
 
     Global AttackManager amEncounter1("");
 
@@ -247,6 +245,121 @@ To get if an NPC is handcuffed :
 
     if( npc.InContext("Handcuffed") ) {}
 
+
+Make npc flee an Character :
+
+    npc.Flee( cPlayer1, speedNumber, #USEPARKOUR );
+
+
+To move npc :
+
+    Locator myLocator;
+    npc.MoveTo(myLocator, 1, #STRAIGHTLINE);
+    
+    npc.MoveTo(cPlayer1, 1);
+
+
+Spawn NPC :
+
+    Position npcPos(0, 1, 0);
+    Number npcDirection(0);
+
+    Character myNPC;
+    
+    StreamedCharacterPreLoad("npcname");
+
+    Wait(1); // Wait to load the character
+
+    // Make NPC without AI :
+    myNPC = CreateCharacter("npcname", "npctype", npcPos, npcDirection);
+
+    // Make npc with AI :
+    myNPC = CreateAICharacter("npcname", "npctype", npcPos, npcDirection);
+
+    // To get npc type and name, go to STUFF/AI/AITYPES.TXT
+
+Make NPC moving to location :
+
+    Position myPos(0, 0, 0);   
+    npc.MoveTo( myPos, 2 );
+
+Teleport a character :
+
+    cPlayer1.Teleport(position (of the class Position), rotation (of the class Number) );
+
+Disable collisions of a character :
+
+    npc.SetNoCollision(true);
+
+Make npc down :
+
+    npc.LockInPlace(true, "idle");
+    npc.CutDownCharacter(true);
+
+
+Detect when npc is on the screen / window :
+
+    npc.OnScreen();
+
+Force character to enter into a vehicle you have 2 function :
+    
+    // IDK if there are a difference but you can use one of this 2 functions
+    character.EnterVehicle( vehicle, #DRIVER );
+    character.SetVehicle( vehicle, #DRIVER );
+
+Play animation :
+
+    character.PlayContextAnimation("celebration", 1);
+
+To get the nearest player
+
+    Global Character cPlayer1;
+    Global Character cPlayer2;
+
+    if ( !cPlayer2 )
+    {
+        return cPlayer1;
+    }
+    else
+    {
+        if ( cPlayer1.DistanceTo( myPos ) <= cPlayer2.DistanceTo( myPos ) )
+        {
+            return cPlayer1;
+        }
+        else
+        {
+            return cPlayer2;
+        };
+    };
+
+
+In a character code to get the reference to the npc we use the function "GetCharacter()" like this :
+
+    Character me(GetCharacter());
+
+To get if character is in a vehicle :
+
+    character.InVehicle( vehicle );
+
+
+
+### Vehicle objects
+
+Note : to set specific things of a vehicle (like the vehicle speed for example) you must put a Character in the vehicle and use functions on this character.
+
+
+Spawn vehicle :
+    
+    StreamedCharacterPreLoad(vehicleType); // Load vehicle
+
+    Wait(1); // Wait for loading vehicle
+
+    Position vehiclePos(0, 1, 0);
+    Number vehicleDirection(0);
+
+    Vehicle vVehicle;
+    vVehicle = CreateAiVehicle("Hero", "Enforcer", vehiclePos, vehicleDirection);
+    // To get vehicle type and name, go to STUFF/AI/AITYPES.TXT
 
 Make race pursuit :
 
@@ -279,51 +392,85 @@ Make race pursuit :
     spawnNPC();
 
 
-
-
 Get driver in a vehicle :
 
     vehicle.GetDriver();
 
+Get vehicle speed :
 
-Make npc flee an Character :
+    v1 = cPlayer1.GetVehicle();
+    if ( v1.GetSpeed() > nDrivingVelocity ) {};
 
-    npc.Flee( cPlayer1, speedNumber, #USEPARKOUR );
+Set vehicle speed :
 
+    npcDriver.SetDriveSpeed( 4 );
+    npcDriver.SetDriveToBoost(0.25);
 
-In general, there are the main first class in a code
-Named "Base" and at the end of the code we call it like this :
-
-    State Base() {
+Set and get health of vehicle :
     
-	    Conditions
-	    {
-            // Your code here (executed every frames)
-	    };
-	    Actions
-	    {
-            // Your code here (execute one frame)
-	    };
-    }
+    vehicle.GetHealth(#Max);
+    vehicle.SetHealth(#Set, 4);
 
-    Base();
+Drive vehicle to position :
 
-    // More info in the "basics" section
+    Position myPos(0, 0, 0);
+    Number speed(5);
 
-To move npc :
+    characterNPC.DriveTo( myPos, speed, #STRAIGHTLINE );
 
-    Locator myLocator;
-    npc.MoveTo(myLocator, 1, #STRAIGHTLINE);
+Destroy / Remove a vehicle :
+
+    vehicle.Destroy();
+
+Set vehicle traffic density :
+
+    OverrideTrafficDensity(0); // Stop the traffic (1 or 0)
+    KillSpawnedTraffic(); // Kill all traffic
+
+
+Eject character from vehicle :
+
+    character.ExitVehicle();
+
+Get if vehicle is on the screen :
+
+    vehicle.OnScreen();
+
+Make car invulnerable
+
+    SetInvulnerable(myVehicle, true);
+
+Let ai the control of the car :
+
+    cActive.SetAiOverride(true);
+
+Start a race pursuit without manually spawning car :
+
+    Character playerToPursuit( cPlayer1 );
+
+    // Make new car that spawn :
+    AddTrafficVehicleModel(Name="Enforcer_Hero", #Common, PursueTarget=playerToPursuit, MaxInstances=1, MinSpeed=3.5, MaxSpeed=4.5, CanSpawnParked=0, #IgnoreRoadRules, #ShowOnMap, #Overwrite);
     
-    npc.MoveTo(cPlayer1, 1);
+    // Make these cars dangerous :
+    EnablePursueFromTraffic("Hero", "Enforcer", 20.0, 2, playerToPursuit, 3, #SHOWONDRC);
 
-Get distance between 2 Locators / Characters :
-    
+Stop a pursuit :
+
+    DisablePursueFromTraffic(tPursuitVehicleType1, tPursuitVehicleClass1, #DESTROYPURSUERS);
+    DisablePursueFromTraffic("Hero", "Enforcer", #DESTROYPURSUERS);
+
+### Position objects
+
+Declarate a position :
+
+    Position myPosition(-180, 5, -221);
+
+Get distance between 2 Characters :
+
     char1.DistanceTo(char2);
-    loc1.DistanceTo(loc2);
 
-    char1.DistanceToXZ(char2);
-    loc1.DistanceToXZ(loc2);
+    char1.DistanceToXZ(char2); // Get the distance without including the Y axe
+
 
 Get x, y and z variables of position / locator :
 
@@ -332,82 +479,39 @@ Get x, y and z variables of position / locator :
     position.GetZ();
 
 
-To get the nearest player
 
-    Global Character cPlayer1;
-    Global Character cPlayer2;
+### Random things
 
-    if ( !cPlayer2 )
+
+Register an event :
+
+    Function myFunctionName(Character cSplat)
     {
-        return cPlayer1;
-    }
-    else
-    {
-        if ( cPlayer1.DistanceTo( ennemyPos ) <= cPlayer2.DistanceTo( ennemyPos ) )
-        {
-            return cPlayer1;
-        }
-        else
-        {
-            return cPlayer2;
-        };
+        // code
     };
 
-To get if character is in a vehicle :
+    RegisterEvent("eventName", "myFunctionName", cPlayer1 );
 
-    character.InVehicle( vehicle );
+    // List of some events :
 
-Eject character from vehicle :
+	RegisterEvent("ArrivedToBouncePadTarget", "myFunctionName", cPlayer1 );
+    RegisterEvent("PlayerJackedVehicle", "function");
+    RegisterEvent("PlayerExitedVehicle", "function");
+    RegisterEvent("PlayerVehicleHitProp", "function");
+    RegisterEvent("PlayerVehicleHitTraffic", "function");
+    RegisterEvent("PlayerVehicleAndAIVehicleCollision", "function");
+    RegisterEvent("PlayerVehicleHitKrawlie", "function");
+    RegisterEvent("PlayerVehicleOnRoof", "function");
+    RegisterEvent("PlayerVehicleWaterRespawn", "function");
+    RegisterEvent("PlayerVehicleDestroyed", "function");
+    RegisterEvent("PlayerVehicleNearlyWrecked", "function");
+    RegisterEvent("PlayerVehicleJumping", "function");
 
-    vehicle.ExitVehicle();
+    RegisterEvent("AllGoldBricksCollected", "function");
 
-Spawn vehicle :
-    
-    StreamedCharacterPreLoad(vehicleType); // Load vehicle
+    RegisterEvent("VehicleTakenDamage", "MyFunction", vehicle);
+    RegisterEvent("ArrivedAtTarget", "function", charDriver); // Work with the drivers
 
-    Wait(1); // Wait for loading vehicle
-
-    Position vehiclePos(0, 1, 0);
-    Number vehicleDirection(0);
-
-    Vehicle vVehicle;
-    vVehicle = CreateAiVehicle("Hero", "Enforcer", vehiclePos, vehicleDirection);
-    // To get vehicle type and name, go to STUFF/AI/AITYPES.TXT
-
-Spawn NPC :
-
-    Position npcPos(0, 1, 0);
-    Number npcDirection(0);
-
-    Character myNPC;
-    
-    StreamedCharacterPreLoad("npcname");
-
-    Wait(1); // Wait to load the character
-
-    // Make NPC without AI :
-    myNPC = CreateCharacter("npcname", "npctype", npcPos, npcDirection);
-
-    // Make npc with AI :
-    myNPC = CreateAICharacter("npcname", "npctype", npcPos, npcDirection);
-
-    // To get npc type and name, go to STUFF/AI/AITYPES.TXT
-
-Make NPC moving to location :
-
-    Position myPos(0, 0, 0);   
-    npc.MoveTo( myPos, 2 );
-
-
-Make npc down :
-
-    npc.LockInPlace(true,"idle");
-    npc.CutDownCharacter(true);
-
-
-playing a sound :
-
-    PlaySFX(sfx="UI_CodeBreak_CheatUnlocked");
 
 Show / print a text :
 
@@ -421,13 +525,15 @@ Show / print a text :
     PrintToScreen("Hello World"); // WARN this is possible that this function not work
 
 
-Teleport a player / character :
+Show and manage damage bar ui :
+    
+    Number maxPoints(5);
+    Number totalPoints(2);
 
-    cPlayer1.Teleport(position (its a Locator), rotation (its a Number) );
+    UI_SetMissionDamageBarText("MISSION_COMBINE_HARVESTER_BAR_NAME");
+    UI_ShowMissionDamageBar(true);
 
-Disable collisions of a character :
-
-    npc.SetNoCollision(true);
+    UI_SetMissionDamageBar ( (maxPoints - totalPoints), maxPoints );
 
 Change the sky :
 
@@ -440,35 +546,19 @@ Get a key pressed :
     PlayerPressedButton("L3"); // return true / false
     PlayerPressedButton("A");
 
-Get vehicle speed :
-
-    v1 = cPlayer1.GetVehicle();
-    if ( v1.GetSpeed() > nDrivingVelocity ) {};
-
-Force character to enter into a vehicle :
-    
-    character.EnterVehicle( vehicle );
-
-Destroy / Remove a vehicle :
-
-    vehicle.Destroy();
-
-Set vehicle traffic density :
-
-    OverrideTrafficDensity(0); // Stop the traffic (1 or 0)
-    KillSpawnedTraffic(); // Kill all traffic
 
 Activate the slow-motion :
 
     SlowMo( 4, 0.25 );
 
+
+playing a sound :
+
+    PlaySFX(sfx="UI_CodeBreak_CheatUnlocked");
+
 Set screen opacity :
 
-    FadeScreen(true); // If true : show screen If false : show black screen
-
-Detect when npc is on the screen / window :
-
-    npc.OnScreen();
+    FadeScreen(true); // If true : hide screen If false : show screen
 
 Make character opacity down to 0 :
 
@@ -478,11 +568,10 @@ Give coins / studs to player :
 
     PlayerGiveStuds( 5 );
 
-Show and manager damage bar ui :
-    
-    Number maxPoints(5);
-    Number totalPoints(2);
+Play battle music :
 
-    UI_SetMissionDamageBarText("MISSION_COMBINE_HARVESTER_BAR_NAME");
-    UI_ShowMissionDamageBar(true);
-	UI_SetMissionDamageBar ( (maxPoints - totalPoints), maxPoints );
+    PlayActionMusic( true );
+
+Panic all pedestrian :
+
+    TriggerKrawliesMassPanic(position, 7.5);
