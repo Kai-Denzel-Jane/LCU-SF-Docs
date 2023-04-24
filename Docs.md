@@ -1,4 +1,4 @@
-# Inject my code in the game :
+# Inject my code in the game if i don't have the [KF-Launcher](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/edit/dev/KF-Launcher-Doc.md) :
 
 1. Add this line (in lowercase) into the file at LEVELS/LEGO_CITY/LEGO_CITY/AI/SCRIPT.TXT :
 
@@ -110,7 +110,7 @@ To making class :
 	    Conditions // !!   This is executed every frames
 	    {
 		    if ( player.loveCheese() ) {
-                // To execute a class in another use "goto ClassName();"
+			    // To execute a class in another use "goto ClassName();"
 			    goto EatCheese();
 		    };
 	    };
@@ -494,7 +494,7 @@ Register an event :
 
     // List of some events :
 
-	RegisterEvent("ArrivedToBouncePadTarget", "myFunctionName", cPlayer1 );
+    RegisterEvent("ArrivedToBouncePadTarget", "myFunctionName", cPlayer1 );
     RegisterEvent("PlayerJackedVehicle", "function");
     RegisterEvent("PlayerExitedVehicle", "function");
     RegisterEvent("PlayerVehicleHitProp", "function");
