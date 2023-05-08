@@ -3,7 +3,7 @@
 
 > ## Get started
 
-1. Create in the directory of the launcher a folder with the name of your mod (this is the name displayed on the app).
+1. Create in the folder at "YOURG GAME PATH/KF-Files/mods" a folder with the name of your mod (this is the name displayed on the app).
 
 2. Open the new folder and add a file named "mod.json" in lowercase.
 
@@ -44,14 +44,14 @@ If you add in this folder a folder named "STUFF" and in the folder "STUFF" you a
 **warn** : it don't work if the user haven't python
 
 Add a folder named "python" and add in this folder your .py files.
-To execute this file after that the game was started just add the character "_" at the start of your python file.
+To execute this file after that the game was started just add the character "\_" at the start of your python file.
 
 ### Execute nodeJS code :
 
 **warn** : it don't work if the user haven't nodeJS
 
 Add a folder named "js" and add in this folder your .js files.
-To execute this file after that the game was started just add the character "_" at the start of your js file.
+To execute this file after that the game was started just add the character "\_" at the start of your js file.
 
 
 ### Execute bat script :
