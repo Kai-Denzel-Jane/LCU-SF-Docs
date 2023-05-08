@@ -3,7 +3,7 @@
 
 > ## Get started
 
-1. Create in the folder at "YOURG GAME PATH/KF-Files/mods" a folder with the name of your mod (this is the name displayed on the app).
+1. Create in the folder at "YOUR GAME PATH/KF-Files/mods" a folder with the name of your mod (this is the name displayed on the app).
 
 2. Open the new folder and add a file named "mod.json" in lowercase.
 
