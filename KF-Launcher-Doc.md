@@ -32,6 +32,10 @@ To learn the .sf language you can go to this documentation by clicking [HERE](ht
 
 **Note** : your file that include your code can be named by anything because when the launcher inject your file it make a file with another name.
 
+### Create new characters :
+
+The informations that you need to adding new characters are [HERE](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/blob/main/Characters.md).
+
 ### Inject files into the game files :
 
 Add a folder named "install".
