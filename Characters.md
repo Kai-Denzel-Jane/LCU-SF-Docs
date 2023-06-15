@@ -1,6 +1,6 @@
 # Adding new characters in the game
 
-**THIS WORK ONLY ON THE VERSION 1.0 OR LATER OF [KF-LAUNCHER](https://github.com/AntoineUserName/Kestrel-Fusion-Launcher/)**
+**THIS WORK ONLY ON THE LAST VERSION OF [KF-LAUNCHER](https://github.com/AntoineUserName/Kestrel-Fusion-Launcher/)**
 
 
 > # Start
