@@ -1,4 +1,4 @@
-# Inject my code in the game if i don't have the [KF-Launcher](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/edit/dev/KF-Launcher-Doc.md) :
+# Inject my code in the game if I don't have [KF-Launcher](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/edit/dev/KF-Launcher-Doc.md) :
 
 1. Add this line (in lowercase) into the file at LEVELS/LEGO_CITY/LEGO_CITY/AI/SCRIPT.TXT :
 
