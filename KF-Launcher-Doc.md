@@ -12,7 +12,8 @@
 4. Add this code :
 
         {
-            "description": "mod description"
+            "description": "mod description",
+            "devmode": true
         }
 
 5. You can edit the description to explain what your mod do (be sure to use a correct json syntaxe).
