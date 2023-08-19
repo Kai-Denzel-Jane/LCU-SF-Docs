@@ -26,3 +26,14 @@ Paste this folder where you want and rename it by you character name or other.
 Next you need a program that edit .dds files, I use [Gimp](https://www.gimp.org/) but you can using other program if you want.
 
 Now you can modify the textures in the folder that you have copy-pasted, if you view that there are files with just 1 pixel its normal because some assets require just a color so replace this pixel by the color that you want.
+
+
+> # Adding lines to the .TXT file
+
+WARN : **you need to know how the JSON syntaxe works**
+
+All characters has a .txt file, the launcher auto-generate this file but if you want to add a custom line you can :
+
+1. Save you character mod.
+2. Open your mod folder at "GAME-PATH/KF-Files/mods/YOUR-MOD-NAME" and in this folder there is a mod.json file.
+3. Open this file with a text editor (like the notepad for example) and you will see a json object. This object has an list named "attributes" and this list contain the lines that will be added to the .TXT game file. So you just need to add a string value in this list like "myvariable=5.2"
