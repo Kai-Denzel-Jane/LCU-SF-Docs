@@ -1,4 +1,4 @@
-# Links for categories :
+# Links of the categories :
 
 For starting :
 - [Get started](#inject-my-code-in-the-game-if-i-dont-have-the-kf-launcher-)
