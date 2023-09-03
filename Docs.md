@@ -1,18 +1,18 @@
 # Links for categories :
 
 For starting :
-[Get started](#inject-my-code-in-the-game-if-i-dont-have-the-kf-launcher-)
-[The basics](#the-basics-)
+- [Get started](#inject-my-code-in-the-game-if-i-dont-have-the-kf-launcher-)
+- [The basics](#the-basics-)
 
 Game functions and variables :
-[Common stuff](#most-common-functionsvariables-used)
+- [Common stuff](#most-common-functionsvariables-used)
 
-[Character objects](#character-objects)
-[Players and camera](#players-and-camera)
+- [Character objects](#character-objects)
+- [Players and camera](#players-and-camera)
 
-[Vehicle objects](#vehicle-objects)
-[Positions objects](#position-objects)
-[Other random things](#random-things)
+- [Vehicle objects](#vehicle-objects)
+- [Positions objects](#position-objects)
+- [Other random things](#random-things)
 
 
 # Inject my code in the game if i don't have the [KF-Launcher](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/edit/dev/KF-Launcher-Doc.md) :
