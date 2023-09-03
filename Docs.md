@@ -1,3 +1,20 @@
+# Links for categories :
+
+For starting :
+[Get started](#inject-my-code-in-the-game-if-i-dont-have-the-kf-launcher-)
+[The basics](#the-basics-)
+
+Game functions and variables :
+[Common stuff](#most-common-functionsvariables-used)
+
+[Character objects](#character-objects)
+[Players and camera](#players-and-camera)
+
+[Vehicle objects](#vehicle-objects)
+[Positions objects](#position-objects)
+[Other random things](#random-things)
+
+
 # Inject my code in the game if i don't have the [KF-Launcher](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/edit/dev/KF-Launcher-Doc.md) :
 
 1. Add this line (in lowercase) into the file at LEVELS/LEGO_CITY/LEGO_CITY/AI/SCRIPT.TXT :
@@ -54,8 +71,8 @@ To get this variables in the code just enter her names :
 
 To set the value of a variable do this :
 
-    variable = 5
-    variable = true
+    variable = 5;
+    variable = true;
 
 To write comments in the code :
 
@@ -200,6 +217,10 @@ Make an array and using it :
     exampleArray.Clear(); // Empties the array
     exampleArray.Size(); // Returns size
 
+    // copy the array :
+    CityArray newArray;
+    newArray = exampleArray.CreateCopy();
+
 
 Create a global variable :
 
@@ -263,11 +284,19 @@ Start fight / battle with NPC :
     
     npc.Attack(cPlayer1);
 
-To get if an NPC is handcuffed/drowning/dead :
+To get if an NPC is jumping/flying/swimming/handcuffed/drowning/dead :
 
     if( npc.InContext("Drowning") ) {};
+    
     if( npc.InContext("DeathContext") ) {};
+    
     if( npc.InContext("Handcuffed") ) {};
+    
+    if( npc.InContext("Jumping") ) {};
+    
+    if( npc.InContext("FlyHover") ) {};
+
+    if( npc.InContext("Swimming") ) {};
 
 
 Make npc flee an Character :
@@ -351,6 +380,8 @@ Force character to enter into a vehicle you have 2 function :
 
 Play animation :
 
+    character.PlayContextAnimation("talk", -1); // -1 = infinite animation
+
     character.PlayContextAnimation("celebration", 1);
 	character.PlayContextAnimation("idle", -1);
 	character.PlayContextAnimation("Cop_Idle_Salute", 1);
@@ -388,6 +419,56 @@ Set and get health of the char :
     char.GetHealth(#Current);
     char.GetHealth(#Max);
     char.SetHealth(#Set, 4);
+
+
+### Players and camera
+
+There is some functions for interact with the player :
+
+First, at the start of your script use this to get the player 1 and 2
+
+    Global Character cPlayer1;
+    Global Character cPlayer2;
+
+forbid the player to change character :
+
+    AllowCharacterSwap(false, cPlayer1);
+
+Set player character :
+	
+    PlayerSetCharacter(1, "farmer");
+	PlayerSetCharacter(1, "cop");
+
+Activate the jump :
+
+    PressButton(Character=cPlayer1, #Jump);
+
+Lock the player :
+
+    // Lock
+    PlayerSetMovement ( cPlayer1, false, false );
+
+    // Unlock
+    PlayerSetMovement ( cPlayer1, true, true );
+
+Change camera direction :
+
+	SnapCameraToDir(1, "Front");
+    SnapCameraToDir(1, "Rear");
+
+Lock the camera :
+
+    SetCameraVolume(Camera="Locker_Cam", Enable="true");
+
+    // Unlock the camera :
+    
+    SetCameraVolume(Camera="Locker_Cam", Enable="false");
+
+Shake the camera :
+
+    ShakeCamera(#AllCameras,Time=1.5,Frequency=2.0,Amplitude=2.0);
+
+For other functions you can look at the Character objects
 
 
 ### Vehicle objects
@@ -476,7 +557,7 @@ Destroy / Remove a vehicle :
 
 Set vehicle traffic density :
 
-    OverrideTrafficDensity(0); // Stop the traffic (1 or 0)
+    OverrideTrafficDensity(0); // Stop the traffic (can be 0, 1, 0.4...)
     KillSpawnedTraffic(); // Kill all traffic
 
 
@@ -602,8 +683,6 @@ Show / print a text :
     UI_SetMissionMessage("MISSION_GENERIC_COUNTDOWN_2", 1 );
     // Show 1 :
     UI_SetMissionMessage("MISSION_GENERIC_COUNTDOWN_1", 1 );
-    
-    PrintToScreen("Hello World"); // WARN this is possible that this function not work
 
 
 Show and manage damage bar ui :
@@ -640,6 +719,8 @@ Get a key pressed :
 
     PlayerPressedButton(cPlayer1, "L3"); // return true / false
     PlayerPressedButton(cPlayer1, "A");
+
+    PlayerHeldButton("DOWN");
 
 Know if a character is in an animation :
     
@@ -688,20 +769,3 @@ Play battle music :
 Panic all pedestrian :
 
     TriggerKrawliesMassPanic(position, 7.5);
-
-Set player character :
-	
-    PlayerSetCharacter(1, "farmer");
-	PlayerSetCharacter(1, "cop");
-
-Change camera direction :
-
-	SnapCameraToDir(1, "Front");
-
-Lock the camera :
-
-    SetCameraVolume(Camera="Locker_Cam", Enable="true");
-
-    // Unlock the camera :
-    
-    SetCameraVolume(Camera="Locker_Cam", Enable="false");
