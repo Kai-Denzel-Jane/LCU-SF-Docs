@@ -50,20 +50,29 @@ Add a folder named "text".
 In this folder, you can add .txt files and in these files you can write a new line that will be added to the text list.
 If you want to edit an existing line, add a "_" at the start of your file name, in this file you can write an line and the launcher will edit the line that starts with the same id.
 
+
+### Execute JS code :
+
+There is 2 methods :
+
+1 : (Recommanded method) Execute your js file as a module so it will be executed by the nodeJS process of Kestrel-Fusion-Launcher
+
+To do it add a folder named "js" and add in this folder your .js files.
+
+IMPORTANT : Your js files must end with the character "_" else it don't will be launched as a module. (for example your file can be named "mycode\_.js")
+
+For using the JS API go [HERE](https://github.com/Kai-Denzel-Jane/LCU-SF-Docs/blob/main/JS-API.md)
+
+2. Execute your js file forked by the launcher, the launcher will use the .fork() function but i don't recommand it.
+
+To do it add "_fork" at the end of your file name.
+
 ### Execute python code :
 
 **warn** : it don't work if the user haven't python
 
 Add a folder named "python" and add in this folder your .py files.
 To execute this file after that the game was started just add the character "\_" at the start of your python file.
-
-### Execute nodeJS code :
-
-**warn** : it don't work if the user haven't nodeJS
-
-Add a folder named "js" and add in this folder your .js files.
-To execute this file after that the game was started just add the character "\_" at the start of your js file.
-
 
 ### Execute bat script :
 
