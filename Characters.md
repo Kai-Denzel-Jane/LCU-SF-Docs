@@ -1,6 +1,6 @@
 # Adding new characters in the game
 
-**THIS WORK ONLY ON THE VERSION 1.0 OR LATER OF [KF-LAUNCHER](https://github.com/AntoineUserName/Kestrel-Fusion-Launcher/)**
+**THIS WORK ONLY ON THE VERSION 1.0 OR MORE OF [KF-LAUNCHER](https://github.com/AntoineUserName/Kestrel-Fusion-Launcher/)**
 
 
 > # Start
@@ -20,7 +20,7 @@ Other attributes modify the player statistics when you use this character, for e
 
 > # The textures
 
-To create your textures first copy-paste the template, go to "LAUNCHERPATH/resources/app/" and copy the folder named "template character".
+To create your textures first copy-paste the template, go to the launcher folder and copy the folder named "template character".
 Paste this folder where you want and rename it by you character name or other.
 
 Next you need a program that edit .dds files, I use [Gimp](https://www.gimp.org/) but you can using other program if you want.
